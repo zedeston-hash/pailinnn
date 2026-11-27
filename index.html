@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffe8ef">
+  <meta name="description" content="A little love letter for Pailin">
+  <title>ถึงไพลิน ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Itim&family=Mali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink: #ed5790;
+      --pink-dark: #a94769;
+      --pink-soft: #ffd6e4;
+      --paper: #fffbed;
+      --ink: #70464b;
+      --bg: #ffeaf1;
+      --shadow: #e99ab5;
+    }
+    * { box-sizing: border-box; }
+    html { min-height: 100%; }
+    body {
+      margin: 0; min-height: 100vh; color: var(--ink);
+      font-family: "Mali", sans-serif;
+      background-color: var(--bg);
+      background-image: radial-gradient(#e9a9bd 1.7px, transparent 1.9px);
+      background-size: 27px 27px;
+      overflow-x: hidden;
+    }
+    button { font: inherit; cursor: pointer; }
+    .screen {
+      min-height: 100svh; display: none; align-items: center;
+      justify-content: center; padding: 30px 17px 42px;
+      position: relative;
+    }
+    .screen.active { display: flex; animation: appear .55s ease both; }
+    @keyframes appear { from {opacity:0; transform:translateY(10px)} to {opacity:1;transform:none} }
+    .paper {
+      width: min(100%, 520px); min-height: 590px; position: relative;
+      background: var(--paper); border: 2px solid #61464a;
+      border-radius: 34px 28px 35px 30px;
+      box-shadow: 7px 9px 0 var(--shadow), 0 12px 35px #9e52651c;
+      padding: 34px 25px 32px; text-align: center;
+    }
+    .tape {
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%) rotate(-2deg);
+      width: 118px; height: 29px; opacity: .9;
+      background: repeating-linear-gradient(45deg,#f9a8c5 0 9px,#ffe0eb 9px 18px);
+      box-shadow: 0 2px 4px #9b566533;
+    }
+    .mascot {
+      width: 154px; height: 154px; margin: 3px auto 10px; border-radius: 50%;
+      display: grid; place-items: center; background: #ffd6e5;
+      font-size: 91px; position: relative;
+      animation: bob 2.7s ease-in-out infinite;
+    }
+    .mascot:after { content:"♡"; position:absolute; color:#ed5790; font-size:35px; right:3px; top:8px; transform:rotate(18deg); }
+    @keyframes bob { 0%,100%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-8px) rotate(2deg)} }
+    h1 { font-size: clamp(25px, 6vw, 34px); line-height: 1.55; margin: 12px 0 5px; color:#684348; font-weight:700; }
+    .heart { font-size: 36px; margin: 3px 0 12px; animation: beat 1s infinite; }
+    @keyframes beat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.17)} }
+    .sub { font-size: 17px; line-height: 1.95; color:#80666a; margin: 12px auto 25px; white-space: pre-line; }
+    .buttons { display:flex; flex-direction:column; align-items:center; gap:12px; margin-top:25px; }
+    .btn {
+      width:min(100%, 300px); min-height:60px; border:2px solid #65454a;
+      border-radius:999px; padding:12px 20px; font-size:21px; font-weight:600;
+      box-shadow:0 5px 0 #c77b98; transition:transform .18s, box-shadow .18s;
+    }
+    .btn:active { transform:translateY(4px); box-shadow:0 1px 0 #c77b98; }
+    .btn-primary { background:var(--pink); color:white; }
+    .btn-secondary { background:#fffbed; color:#76565b; }
+    .tiny { color:#b48a96; font-size:13px; margin-top:22px; }
+    .loading-card { width:min(100%,520px); background:var(--paper); border:2px solid #65454a; border-radius:32px; box-shadow:7px 9px 0 var(--shadow); padding:35px 25px; text-align:center; }
+    .loading-mascot { font-size:105px; line-height:1.2; animation:bob 2s infinite; }
+    .loading-title { font-family:"Itim",sans-serif; font-size:34px; margin:8px 0; }
+    .progress { height:18px; border:2px solid #684348; border-radius:30px; overflow:hidden; background:#fff; margin:24px 0 9px; }
+    .progress-fill { width:0%; height:100%; border-radius:30px; background:repeating-linear-gradient(45deg,#ec5790 0 10px,#f58bb1 10px 20px); transition:width 1.5s ease; }
+    .letter {
+      text-align:left; background:repeating-linear-gradient(to bottom, transparent 0 37px, #d8d9c9 38px 39px);
+      padding:8px 8px 20px; font-size:17px; line-height:2.25; white-space:pre-line;
+      min-height:300px; margin:15px 0 25px;
+    }
+    .letter-title { color:#b43e6c; font-size:23px; font-weight:700; }
+    .final-note { font-size:19px; line-height:2; margin:15px 0 28px; white-space:pre-line; }
+    .float-heart { position:fixed; bottom:-40px; z-index:5; pointer-events:none; animation:floatUp 4.5s linear forwards; }
+    @keyframes floatUp { to { transform:translateY(-115vh) rotate(35deg); opacity:0; } }
+    .footer { font-size:12px; color:#b98b99; margin-top:23px; }
+    @media (max-width:390px) { .paper {padding:27px 19px; min-height:560px} .sub{font-size:15px} .mascot{width:135px;height:135px;font-size:78px} }
+    @media (prefers-reduced-motion: reduce) { *,*:before,*:after {animation-duration:.01ms!important;transition-duration:.01ms!important} }
+  </style>
+</head>
+<body>
+  <!--
+    ✿ ปรับแต่งเว็บได้ที่ส่วน CONFIG ด้านล่างของไฟล์นี้
+    แก้ชื่อ ข้อความ สี และเพลงได้โดยไม่ต้องแก้โค้ดส่วนอื่น
+  -->
+  <section class="screen active" id="loading">
+    <div class="loading-card">
+      <div class="loading-mascot">🐰</div>
+      <div class="loading-title">Loading......</div>
+      <div style="font-size:18px;line-height:1.9">กำลังเตรียมอะไรบางอย่าง<br>ให้เธออยู่เลยนะ...</div>
+      <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+      <strong id="progressText" style="color:#b34b70">0%</strong>
+      <div class="tiny">แตะเพื่อข้ามไปหน้าถัดไป ♡</div>
+    </div>
+  </section>
+
+  <section class="screen" id="proposal">
+    <main class="paper">
+      <div class="tape"></div>
+      <div class="mascot" aria-hidden="true">🐰</div>
+      <h1 id="question">ไพลิน เป็นแฟนกับเราได้ไหม?</h1>
+      <div class="heart">💗</div>
+      <p class="sub" id="promise">เราสัญญาว่าจะดูแลเธอ<br>ให้ดีที่สุดเท่าที่เราจะทำได้เลยนะ</p>
+      <p id="please" style="color:#c34d78;font-weight:600;min-height:28px"></p>
+      <div class="buttons">
+        <button class="btn btn-primary" id="yesBtn">เป็น 💗</button>
+        <button class="btn btn-secondary" id="noBtn">ยังไม่เป็น 🥺</button>
+      </div>
+      <div class="footer">made with love, just for you ♡</div>
+    </main>
+  </section>
+
+  <section class="screen" id="letterScreen">
+    <main class="paper">
+      <div class="tape"></div>
+      <div class="letter-title" id="letterHeading">ถึงไพลิน... 💗</div>
+      <div class="letter" id="letterText"></div>
+      <div style="text-align:center;font-size:27px">🎀 💗 🎀</div>
+      <div class="buttons"><button class="btn btn-primary" id="finishBtn">อ่านจบแล้ว 💌</button></div>
+    </main>
+  </section>
+
+  <section class="screen" id="success">
+    <main class="paper">
+      <div class="tape"></div>
+      <div class="mascot">🐰</div>
+      <h1 id="successTitle">เย้! เรามีแฟนแล้ว 💗</h1>
+      <div class="heart">💞</div>
+      <p class="final-note" id="successText">ขอบคุณที่เข้ามาเป็นความสุขของเรานะ<br>จากนี้ไปเรามาดูแลกันไปนาน ๆ เลย</p>
+      <div style="font-size:34px">🌷 💗 🌷</div>
+      <div class="footer">forever starts with you ♡</div>
+    </main>
+  </section>
+
+  <script>
+    /* =====================================================
+       CONFIG — แก้ข้อความและรายละเอียดเว็บไซต์ตรงนี้ได้เลย
+       ===================================================== */
+    const CONFIG = {
+      herName: "ไพลิน",
+      yourName: "คนที่รักไพลิน",
+      question: "ไพลิน เป็นแฟนกับเราได้ไหม?",
+      promise: "เราสัญญาว่าจะดูแลเธอ\nให้ดีที่สุดเท่าที่เราจะทำได้เลยนะ",
+      yesButton: "เป็น 💗",
+      noButton: "ยังไม่เป็น 🥺",
+      noMessages: [
+        "น้าาา ลองคิดดูอีกทีได้ไหม 🥺",
+        "เราตั้งใจทำให้เธอเลยนะ 💗",
+        "ขอโอกาสให้เราได้ดูแลเธอนะ",
+        "กดปุ่มสีชมพูได้ไหมคนน่ารัก 🎀"
+      ],
+      letterTitle: "ถึงไพลิน... 💗",
+      letter: `เราอาจไม่ได้เก่งเรื่องพูดคำหวาน ๆ\n\nแต่เราอยากให้ไพลินรู้ว่า การมีเธอเข้ามาในชีวิต\nทำให้หลาย ๆ วันของเรามีความหมายขึ้นมากจริง ๆ\n\nขอบคุณที่เข้ามาอยู่ข้าง ๆ กันนะ\n\nจากนี้เราก็อยากจะค่อย ๆ เรียนรู้กันไป\nดูแลกันในวันที่ดี และอยู่ข้างกันในวันที่ไม่ดี\n\nเราไม่รู้ว่าอนาคตจะเป็นยังไง\nแต่เราอยากมีเธออยู่ในเรื่องราวต่อจากนี้นะ\n\nรักนะไพลิน 💗`,
+      finishButton: "อ่านจบแล้ว 💌",
+      successTitle: "เย้! เรามีแฟนแล้ว 💗",
+      successText: "ขอบคุณที่เข้ามาเป็นความสุขของเรานะ\nจากนี้ไปเรามาดูแลกันไปนาน ๆ เลย\n\nยินดีที่ได้เป็นแฟนกับไพลินนะ 💗",
+      // ใส่ชื่อไฟล์เพลง เช่น "my-song.mp3" ถ้าอัปโหลดเพลงไว้ใน repository เดียวกับ index.html
+      musicFile: ""
+    };
+
+    const $ = (id) => document.getElementById(id);
+    const screens = ["loading", "proposal", "letterScreen", "success"];
+    function showScreen(id) {
+      screens.forEach(s => $(s).classList.toggle("active", s === id));
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    function applyConfig() {
+      $("question").textContent = CONFIG.question;
+      $("promise").textContent = CONFIG.promise;
+      $("yesBtn").textContent = CONFIG.yesButton;
+      $("noBtn").textContent = CONFIG.noButton;
+      $("letterHeading").textContent = CONFIG.letterTitle;
+      $("letterText").textContent = CONFIG.letter;
+      $("finishBtn").textContent = CONFIG.finishButton;
+      $("successTitle").textContent = CONFIG.successTitle;
+      $("successText").textContent = CONFIG.successText;
+      document.title = `ถึง${CONFIG.herName} ♡`;
+    }
+    applyConfig();
+
+    // Loading animation
+    let progress = 0;
+    const fill = $("progressFill");
+    const label = $("progressText");
+    const loadingTimer = setInterval(() => {
+      progress = Math.min(100, progress + 5);
+      fill.style.width = progress + "%";
+      label.textContent = progress + "%";
+      if (progress >= 100) {
+        clearInterval(loadingTimer);
+        setTimeout(() => showScreen("proposal"), 450);
+      }
+    }, 65);
+    $("loading").addEventListener("click", () => {
+      clearInterval(loadingTimer);
+      showScreen("proposal");
+    });
+
+    // NO button gives a gentle playful response; it remains usable and never traps the visitor.
+    let noCount = 0;
+    $("noBtn").addEventListener("click", () => {
+      $("please").textContent = CONFIG.noMessages[noCount % CONFIG.noMessages.length];
+      noCount++;
+      $("noBtn").animate(
+        [{transform:"translateX(0)"},{transform:"translateX(-9px) rotate(-2deg)"},{transform:"translateX(9px) rotate(2deg)"},{transform:"translateX(0)"}],
+        {duration:330}
+      );
+    });
+
+    $("yesBtn").addEventListener("click", () => {
+      showScreen("letterScreen");
+      if (CONFIG.musicFile) {
+        if (!window.loveAudio) {
+          window.loveAudio = new Audio(CONFIG.musicFile);
+          window.loveAudio.loop = true;
+        }
+        window.loveAudio.play().catch(() => {});
+      }
+      burstHearts(12);
+    });
+    $("finishBtn").addEventListener("click", () => {
+      showScreen("success");
+      burstHearts(28);
+    });
+
+    function burstHearts(count) {
+      const symbols = ["💗","💕","💖","💞","♡","🎀"];
+      for (let i=0; i<count; i++) {
+        setTimeout(() => {
+          const heart = document.createElement("span");
+          heart.className = "float-heart";
+          heart.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+          heart.style.left = (Math.random()*95) + "vw";
+          heart.style.fontSize = (18 + Math.random()*23) + "px";
+          heart.style.animationDuration = (3.2 + Math.random()*2.2) + "s";
+          document.body.appendChild(heart);
+          setTimeout(() => heart.remove(), 6000);
+        }, i*75);
+      }
+    }
+  </script>
+</body>
+</html>
